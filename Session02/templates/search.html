@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Search</h1>
+    {% for service in all_service %}
+        <div>
+            {% if service.gender == 0%}
+            <img src="../static/image/female-profile.jpg" alt="">
+            {% else %}
+            <img src="../static/image/male-profile.jpg" alt="">
+            {% endif %}
+            <p>Ten: {{ service.name }}</p>
+            <p>Gioi tinh: {{ service.gender }}</p>
+            <p>Chieu cao: {{ service.height }}</p>
+            <p>Dia chi: {{ service.address }}</p>
+            <p>YOB: {{ service.yob }}</p>
+        </div>
+        <hr/>
+    {% endfor %}
+</body>
+</html>
