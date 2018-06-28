@@ -10,15 +10,9 @@
     <h1>Search</h1>
     {% for service in all_service %}
         <div>
-            <!-- {% if service.gender == 0%} -->
             <img src="{{ service.image }}" alt="{{ service.name }}" height="200px">
-            <!-- {% else %} -->
-            <!-- <img src="../static/image/male-profile.jpg" alt=""> -->
-            <!-- {% endif %} -->
             <p>Ten: {{ service.name }}</p>
-            <!-- <p>Gioi tinh: {{ service.gender }}</p> -->
             <p>Chieu cao: {{ service.height }}</p>
-            <!-- <p>Dia chi: {{ service.address }}</p> -->
             <p>YOB: {{ service.yob }}</p>
             <a href="{{ url_for('detail', service_id=service.id) }}">Chi tiet</a>
         </div>
