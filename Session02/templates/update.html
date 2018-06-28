@@ -35,6 +35,10 @@
                         <td><input type="text" name="description"  value="{{ service.description }}"></td>
                     </tr>
                     <tr>
+                        <td><label>Measure</label></td>
+                        <td><input type="text" name="measure"  value="{{ service.measure|join('') }}"></td>
+                    </tr>
+                    <tr>
                         <td></td>
                         <td>
                             <input type="radio" name="gender" value="1" {% if service.gender == 1%} checked {% endif %}> Male

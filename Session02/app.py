@@ -72,7 +72,7 @@ def admin_update(service_id):
         address = form['address']
         # status = form['status']
         description = form['description']
-
+        measure = form['measure']
 
         service_update.update(
             set__name = name,
@@ -83,7 +83,7 @@ def admin_update(service_id):
             set__address = address,
             # set__status = status,
             set__description = description,
-
+            set__measure = measure
         )
         service_update.reload()
         return redirect('/admin', code=302)
