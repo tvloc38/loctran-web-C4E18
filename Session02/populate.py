@@ -10,16 +10,16 @@ fake = Faker()
 # for i in range(10):
 # print("Saving service", i+1, ".....")
 new_service = Service(
-    name="Tu Linh",
-    yob= 1994,
+    name="Tu Linh Thu",
+    yob= 1997,
     gender=randint(0, 1),
     height=randint(155, 190),
     phone=fake.phone_number(),
     address=fake.address(),
     status=choice([True, False]),
     image = "/static/image/tulinh.jpg",
-    description = "ngoan hien, de thuong",
-    measure = [90,60,90]
+    description = "dam duc",
+    measure = [50,50,50]
 )
 
 new_service.save()
