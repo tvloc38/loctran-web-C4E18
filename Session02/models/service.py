@@ -11,7 +11,7 @@ class Service(Document):    #ten class chu cai dau viet hoa     #class: khuôn  
     status = BooleanField()
     image = StringField()
     description = StringField()
-    measure = StringField()
+    measure = ListField()
 
 # #2. 
 # new_service = Service(

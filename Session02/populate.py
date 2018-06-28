@@ -19,7 +19,7 @@ new_service = Service(
     status=choice([True, False]),
     image = "/static/image/tulinh.jpg",
     description = "ngoan hien, de thuong",
-    measure = "90-60-90"
+    measure = [90,60,90]
 )
 
 new_service.save()

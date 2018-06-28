@@ -36,7 +36,7 @@
                     </tr>
                     <tr>
                         <td><label>Measure</label></td>
-                        <td><input type="text" name="measure"  value="{{ service.measure }}"></td>
+                        <td><input type="text" name="measure"  value="{{ service.measure|join(', ') }}"></td>
                     </tr>
                     <tr>
                         <td></td>

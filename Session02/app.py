@@ -83,7 +83,7 @@ def admin_update(service_id):
             set__address = address,
             # set__status = status,
             set__description = description,
-            set__measure = measure
+            addtoset__measure = measure
         )
         service_update.reload()
         return redirect('/admin', code=302)
