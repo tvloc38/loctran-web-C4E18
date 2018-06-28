@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Admin</title>
+</head>
+<body>
+    <h1>Admin</h1>
+    <table border='1px'>
+        <thead>
+            <th>Stt</th>
+            <th>Ten</th>
+            <th>Gioi tinh</th>
+            <th>Chieu cao</th>
+            <th>Dia chi</th>
+            <th>YOB</th>
+            <th>Status</th>
+            <th></th>
+        </thead>
+        <tbody>
+            {% for service in all_service %}
+            <tr>
+                <td>{{ loop.index }}</td>
+                <td>{{ service.name }}</td>
+                {% if service.gender == 1 %}
+                <td>Nam</td>
+                {% else %}
+                <td>Nu</td>
+                {% endif %}
+                <td>{{ service.height }}</td>
+                <td>{{ service.address }}</td>
+                <td>{{ service.yob }}</td>
+                {% if service.status == True %}
+                <td>San sang</td>
+                {% else %}
+                <td>Busy</td>
+                {% endif %}
+                <td>
+                    <a href="{{ url_for('admin_update', service_id=service.id)}}">Sua</a>
+                    <a href="{{ url_for('admin_delete', service_id=service.id) }}">Xoa</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <a href="{{ url_for('admin_add')}}">Add service</a>
+</body>
+</html>

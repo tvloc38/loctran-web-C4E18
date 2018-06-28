@@ -9,6 +9,9 @@ class Service(Document):    #ten class chu cai dau viet hoa     #class: khuôn  
     phone = StringField()
     address = StringField()
     status = BooleanField()
+    image = StringField()
+    description = StringField()
+    measure = StringField()
 
 # #2. 
 # new_service = Service(
