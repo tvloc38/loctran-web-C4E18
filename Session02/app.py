@@ -78,7 +78,7 @@ def admin_update(service_id):
             set__name = name,
             set__yob = yob,
             set__gender = gender,
-            set__height = height,
+            set__height = int(height),
             set__phone = phone,
             set__address = address,
             # set__status = status,
@@ -98,6 +98,7 @@ def admin_add():
         yob = form['yob']
         address = form['address']
         phone = form['phone']
+        height = form['height']
         gender = form['gender']
 
 
@@ -106,6 +107,7 @@ def admin_add():
             yob=yob,
             address=address,
             phone=phone,
+            height=int(height),
             gender=gender
         )
 
