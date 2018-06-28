@@ -21,7 +21,7 @@
         <p>YOB: {{ service.yob }}</p>
         <p>Dien thoai: {{ service.phone }}</p>
         <p>Mo ta: {{ service.description }}</p>
-        <p>So do: {{ service.measure|join('') }}</p>
+        <p>So do: {{ service.measure|join(', ') }}</p>
         <a href="{{ url_for('search') }}">Quay lai</a>
     </div>
 </body>
