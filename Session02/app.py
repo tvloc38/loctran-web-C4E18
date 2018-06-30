@@ -2,8 +2,13 @@ from flask import *
 import mlab
 from models.service import Service
 from models.customer import Customer
+from models.user import User
+from models.order import Order
+from datetime import datetime
+from gmail import *
 
 app = Flask(__name__)
+app.secret_key = "secret key"
 
 #0. Create connection
 mlab.connect()
@@ -25,11 +30,15 @@ def search():
 
 @app.route('/detail/<service_id>')
 def detail(service_id):
-    one_service = Service.objects.get(id=service_id)
-    if service_id is None:
-        return "Not found"
+    if "signin" in session:
+        one_service = Service.objects.get(id=service_id)
+        if service_id is None:
+            return "Not found"
+        else:
+            return render_template('detail.html', service=one_service)
     else:
-        return render_template('detail.html', service=one_service)
+        session['service_id'] = service_id
+        return redirect(url_for('signin'))
 
 @app.route('/customer')
 def customer():
@@ -114,6 +123,84 @@ def admin_add():
         new_service.save()
         # print("Saved")
         return redirect('/admin', code=302)
+
+@app.route('/admin/order')
+def admin_order():
+    all_order = Order.objects()
+    return render_template('admin_order.html', all_order=all_order)
+
+@app.route('/signup', methods=["GET", "POST"])
+def signup():
+    if request.method == "GET":
+        return render_template("signup.html")
+    elif request.method == "POST":
+        form = request.form
+        fullname = form['fullname']
+        email = form['email']
+        username = form['username']
+        password = form['password']
+
+        new_user = User(
+            fullname = fullname,
+            email = email,
+            username = username,
+            password = password
+        ) 
+        new_user.save()
+        return redirect('/', code=302)
+
+@app.route('/signin', methods=["GET", "POST"])
+def signin():
+    if request.method == "GET":
+        return render_template("signin.html")
+    elif request.method == "POST":
+        form = request.form 
+        username = form['username']
+        password = form['password']
+        
+        one_user = User.objects.get(username=username)
+        if one_user is None:
+            return "Tai khoan khong ton tai"
+        else:
+            if one_user['password'] == password :
+                session['signin'] = True
+                user_id = str(one_user['id'])
+                session['user_id'] = user_id
+                return redirect(url_for('detail',service_id=session['service_id']))
+            else:
+                return "dang nhap khong thanh cong"
+
+@app.route('/signout')
+def signout():
+    del session['signin']
+    return redirect(url_for('index'))
+
+@app.route('/order/<service_id>')
+def order(service_id):
+    new_order = Order(
+        service_id = service_id,
+        user_id = session['user_id'],
+        time_order = datetime.now().strftime("%I:%M %p"),
+        is_accepted = False 
+    )
+    new_order.save()
+    return "Da gui yeu cau"
+
+@app.route('/order/accept/<order_id>')
+def order_accept(order_id):
+    one_order = Order.objects.get(id=order_id)
+    if one_order is None:
+        return "Khong ton tai"
+    else:
+        one_order.update(
+            set__is_accepted = True
+        )
+        one_order.reload()
+        gmail = GMail('LocTran<loctran.mict@gmail.com>','Mict12345')
+        content="Yêu cầu của bạn đã được xử lý, chúng tôi sẽ liên hệ với bạn trong thời gian sớm nhất. Cảm ơn bạn đã sử dụng dịch vụ của ‘Mùa Đông Không Lạnh"
+        msg = Message('Hello',to=one_order.user_id.email,html=content)
+        gmail.send(msg)
+        return redirect(url_for('admin_order'))
 
 if __name__ == '__main__':
   app.run(debug=True)

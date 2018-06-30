@@ -7,7 +7,12 @@
     <title>Document</title>
 </head>
 <body>
+    {% if session['signin'] %}
+        <h3>Xin chao, {{ session['user_id'] }}</h3>
+        <a href="{{ url_for('signout') }}">Dang xuat</a>
+    {% endif %}
     <h1>Service</h1>
+    <a href="{{ url_for('search') }}">Service</a>
     <!-- <a href="{{ url_for('search', gender=1) }}">Nam</a>       url_for de chay function -->
     <!-- <a href="{{ url_for('search', gender=0) }}">Nu</a> -->
     <hr>
