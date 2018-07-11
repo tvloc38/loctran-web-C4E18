@@ -5,8 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
+    {% include 'meta-data.html' %}
 </head>
 <body>
+    {% include 'homepage/navigation.html'%}
+    {% include 'homepage/carousel.html'%}
+
     {% if session['signin'] %}
         <h3>Xin chao, {{ session['user_id'] }}</h3>
         <a href="{{ url_for('signout') }}">Dang xuat</a>

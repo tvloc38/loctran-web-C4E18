@@ -1,0 +1,93 @@
+.text-success{
+    color:green;
+}
+
+.text-center{
+    text-align: center;
+}
+
+.w-200px{
+    width:200px;
+}
+
+.h-100px{
+    height:100px;
+}
+
+.bg-blue{
+    background-color: dodgerblue;
+}
+
+.bg-lightgreen{
+    background-color: lightgreen;
+}
+
+.d-inline-block {
+    display: inline-block;
+}
+
+#box-model {
+    border: 1px solid black;
+    margin: 10px 20px 30px 40px;
+}
+
+.w-50{
+    width: 50%;
+}
+
+.h-50px{
+    height: 50px;
+}
+
+.h-80px{
+    height:80px;
+}
+
+.h-50{
+    height:50%;
+}
+
+.bg-lightskyblue{
+    background-color: lightskyblue;
+}
+
+.w-15{
+    width:15%;
+}
+
+.w-69{
+    width:69%;
+}
+
+.h-50px{
+    height:50px;
+}
+
+.bg-grey {
+    background-color: grey;
+}
+
+.bg-green {
+    background-color: green;
+}
+
+.m-10px {
+    margin: 10px;
+}
+
+.w-100px {
+    width: 100px;
+}
+
+.h-100px {
+    height: 100px;
+}
+
+#flex-box {
+    display: flex;
+    flex-flow: row nowrap;      /* row/column */ /* wrap: giữ lại cái width  */
+    justify-content: center;    /* default:flex-start/flex-end/center/space-around */
+    height:500px;
+    align-items: center;
+    flex-direction: row-reverse ;
+}
